@@ -1,0 +1,81 @@
+/* K League Transfer Radar: design tokens for the "배송 조회" (parcel tracking) screen.
+   Source of truth for implementation. Values were taken from the approved prototype
+   (docs/ux-concepts/transfer-board/concept-02) and its shared styles.
+   Theme: light by default, dark via prefers-color-scheme or [data-theme="dark"]. */
+
+:root {
+  /* neutrals */
+  --canvas: #f4f5f7;        /* page background */
+  --surface: #ffffff;       /* sections, detail panel, chips */
+  --ink: #121823;           /* primary text, filled chips */
+  --ink-2: #434c5c;         /* secondary text */
+  --muted: #6a7384;         /* labels, meta, empty text (≥4.5:1 on --surface) */
+  --line: #dfe2e8;          /* dividers, empty track, inactive stations */
+  --focus: #1d5fbf;         /* keyboard focus ring */
+
+  /* stage: one hue per claimed stage. Rumors are always drawn dashed/outlined. */
+  --st-unknown: #5b6270;        --st-unknown-bg: #eef0f3;
+  --st-interest: #4f5f78;       --st-interest-bg: #e9eef6;
+  --st-contact: #1d5fbf;        --st-contact-bg: #e6effc;
+  --st-negotiation: #8a5a00;    --st-negotiation-bg: #fdf2dc;
+  --st-near: #6a3fb8;           --st-near-bg: #f1ebfb;
+  --st-confirmed-bg: #157a3d;   --st-confirmed: #ffffff;   /* official confirmation ONLY */
+  --st-failed: #b42318;         --st-failed-bg: #fdecea;
+
+  /* review */
+  --rv-pending: #8a5a00;    /* "검토 대기", ghost marker, pending tag */
+  --rv-refuted: #b42318;    /* "반박됨" */
+
+  /* type */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --fs-title: 22px;   /* club name */
+  --fs-name: 15px;    /* player name in a row */
+  --fs-body: 14px;
+  --fs-meta: 12px;
+  --fs-label: 11px;   /* station labels, current-position label */
+  --fw-regular: 400; --fw-bold: 700; --fw-heavy: 800;
+
+  /* space and shape */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --r-section: 16px; --r-panel: 16px; --r-pill: 999px; --r-chip: 18px;
+  --shadow-panel: 0 12px 40px #0b183326, 0 0 0 1px var(--line);
+
+  /* track geometry */
+  --trk-height: 34px;           /* row track box; line sits at 64% of the height */
+  --trk-w-low: 3px; --trk-w-medium: 5px; --trk-w-high: 7px;   /* line width = evidence confidence */
+  --trk-station: 12px;          /* passed / future station */
+  --trk-station-now: 20px;      /* current position, with a 7px halo */
+  --trk-ghost: 22px;            /* pending claim marker */
+
+  /* motion (disabled under prefers-reduced-motion) */
+  --dur-fast: 150ms; --dur-base: 200ms; --ghost-pulse: 2.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --canvas: #0c0f14; --surface: #151a22; --ink: #e9edf3; --ink-2: #c0c7d2; --muted: #8f99a9; --line: #252c38; --focus: #8cb8ff;
+    --st-unknown: #b4bac6;  --st-unknown-bg: #262a31;
+    --st-interest: #b3c0d6; --st-interest-bg: #222a36;
+    --st-contact: #8cb8ff;  --st-contact-bg: #15243d;
+    --st-negotiation: #f2c46b; --st-negotiation-bg: #33270f;
+    --st-near: #c9adff;     --st-near-bg: #2a2140;
+    --st-confirmed-bg: #4cc77f; --st-confirmed: #06210f;
+    --st-failed: #ff9c92;   --st-failed-bg: #3a1a17;
+    --rv-pending: #f2c46b; --rv-refuted: #ff9c92;
+    --shadow-panel: 0 12px 40px #00000066, 0 0 0 1px var(--line);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #0c0f14; --surface: #151a22; --ink: #e9edf3; --ink-2: #c0c7d2; --muted: #8f99a9; --line: #252c38; --focus: #8cb8ff;
+  --st-unknown: #b4bac6;  --st-unknown-bg: #262a31;
+  --st-interest: #b3c0d6; --st-interest-bg: #222a36;
+  --st-contact: #8cb8ff;  --st-contact-bg: #15243d;
+  --st-negotiation: #f2c46b; --st-negotiation-bg: #33270f;
+  --st-near: #c9adff;     --st-near-bg: #2a2140;
+  --st-confirmed-bg: #4cc77f; --st-confirmed: #06210f;
+  --st-failed: #ff9c92;   --st-failed-bg: #3a1a17;
+  --rv-pending: #f2c46b; --rv-refuted: #ff9c92;
+  --shadow-panel: 0 12px 40px #00000066, 0 0 0 1px var(--line);
+}
