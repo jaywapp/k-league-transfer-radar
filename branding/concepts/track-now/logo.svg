@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 120" width="440" height="120">
+  <title>K리그 이적 레이더 로고 - 현재 위치</title>
+  <g transform="translate(12 12) scale(0.09375)">
+    <rect width="1024" height="1024" rx="235" fill="#121823"/>
+    <line x1="214" y1="512" x2="470" y2="512" stroke="#ffffff" stroke-width="56" stroke-linecap="round"/>
+    <circle cx="214" cy="512" r="46" fill="#ffffff"/>
+    <line x1="612" y1="512" x2="736" y2="512" stroke="#8f99a9" stroke-width="40" stroke-dasharray="38 44" stroke-linecap="round"/>
+    <circle cx="806" cy="512" r="38" fill="none" stroke="#8f99a9" stroke-width="24"/>
+    <circle cx="512" cy="512" r="128" fill="#ffffff" fill-opacity=".16"/>
+    <circle cx="512" cy="512" r="80" fill="#ffffff"/>
+  </g>
+  <text x="124" y="66" font-family="Pretendard, 'Malgun Gothic', sans-serif" font-size="32" font-weight="800" letter-spacing="-1" fill="#121823">K리그 이적 레이더</text>
+  <text x="125" y="92" font-family="Pretendard, 'Malgun Gothic', sans-serif" font-size="14" font-weight="500" letter-spacing=".3" fill="#434c5c">K League Transfer Radar</text>
+</svg>

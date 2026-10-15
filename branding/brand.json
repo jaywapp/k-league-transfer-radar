@@ -1,0 +1,49 @@
+{
+  "product": "K리그 이적 레이더",
+  "productEn": "K League Transfer Radar",
+  "basis": "docs/design · 배송 조회 (중립 잉크 팔레트)",
+  "selected": "route",
+  "font": "assets/PretendardVariable.woff2",
+  "palette": {
+    "slate": "#f4f5f7",
+    "surface": "#ffffff",
+    "slate2": "#dfe2e8",
+    "ink": "#121823",
+    "muted": "#434c5c",
+    "terracotta": "#121823"
+  },
+  "iconSizes": [
+    1024,
+    512,
+    192,
+    48
+  ],
+  "splash": {
+    "width": 360,
+    "height": 780,
+    "fps": 15,
+    "seconds": 2.4,
+    "holdSeconds": 1.2,
+    "loop": true
+  },
+  "concepts": [
+    {
+      "id": "track-now",
+      "name": "1 현재 위치",
+      "idea": "조회 막대를 그대로 마크로 옮겼다. 지나온 구간은 실선, 큰 점이 지금 반영된 위치, 아직 오지 않은 구간은 점선과 빈 원이다. 화면의 막대와 같은 문법이라 처음 보는 사람도 앱 안에서 다시 만난다.",
+      "ground": "ink"
+    },
+    {
+      "id": "route",
+      "name": "2 이적 경로",
+      "idea": "두 구단 사이를 잇는 점선 호와 그 위의 현재 위치 점. 출발은 채운 원, 도착은 빈 원이다. 이적이라는 사건 자체를 그렸고, 구단 색 없이 잉크 한 색으로 어느 구단에도 치우치지 않는다.",
+      "ground": "canvas"
+    },
+    {
+      "id": "quote",
+      "name": "3 두 개의 따옴표",
+      "idea": "출처의 말을 옮기는 따옴표 한 쌍. 채운 따옴표는 확인된 근거, 빈 따옴표는 아직 주장인 소식이다. '미래를 맞힌다'가 아니라 '누가 무엇을 말했는지 보여 준다'는 서비스 성격을 기호 하나로 담았다.",
+      "ground": "surface"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+/* K League Transfer Radar: brand tokens (concept "route", selected 2026-10-15).
+   Brand marks use ink only. Stage/state colors live in docs/design/tokens.css and
+   must never be used in the logo, favicon or brand surfaces. */
+
+:root {
+  /* brand */
+  --brand-ink: #121823;          /* symbol, wordmark, primary text */
+  --brand-ink-2: #434c5c;        /* English line, descriptor, secondary text */
+  --brand-paper: #f4f5f7;        /* app icon tile, page background, social image */
+  --brand-surface: #ffffff;      /* cards, header */
+  --brand-line: #dfe2e8;         /* tile outline on white, dividers */
+  --brand-halo-opacity: 0.12;    /* ring around the "now" marker */
+
+  /* type */
+  --brand-font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --brand-wordmark-weight: 800;
+  --brand-wordmark-tracking: -0.03em;
+  --brand-en-weight: 500;
+  --brand-en-tracking: 0.015em;
+
+  /* logo sizing */
+  --brand-logo-h-min: 40px;      /* horizontal lockup, both lines */
+  --brand-symbol-min: 18px;      /* symbol alone (height) */
+  --brand-header-symbol: 28px;   /* service header symbol height */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand-ink: #e9edf3; --brand-ink-2: #c0c7d2; --brand-paper: #0c0f14; --brand-surface: #151a22; --brand-line: #252c38;
+    --brand-halo-opacity: 0.16;
+  }
+}
+:root[data-theme="dark"] {
+  --brand-ink: #e9edf3; --brand-ink-2: #c0c7d2; --brand-paper: #0c0f14; --brand-surface: #151a22; --brand-line: #252c38;
+  --brand-halo-opacity: 0.16;
+}

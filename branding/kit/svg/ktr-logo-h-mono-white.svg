@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 316 56" width="316" height="56" role="img">
+  <title>K리그 이적 레이더 가로 로고</title>
+  <g transform="scale(0.13023) translate(-216 -294)">
+  <defs><mask id="cut" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024"><rect width="1024" height="1024" fill="#fff"/><circle cx="512" cy="380" r="80" fill="#000"/></mask></defs>
+  <circle cx="300" cy="640" r="84" fill="#ffffff"/>
+  <path d="M300 540 Q512 220 724 540" fill="none" stroke="#ffffff" stroke-width="32" stroke-dasharray="44 40" stroke-linecap="round" mask="url(#cut)"/>
+  <circle cx="724" cy="640" r="66" fill="none" stroke="#ffffff" stroke-width="36"/>
+  
+  <circle cx="512" cy="380" r="50" fill="none" stroke="#ffffff" stroke-width="30"/>
+  </g>
+  <text x="94" y="29" font-family="Pretendard, 'Pretendard Variable', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" font-size="30" font-weight="800" letter-spacing="-0.9" fill="#ffffff">K리그 이적 레이더</text>
+  <text x="95" y="51" font-family="Pretendard, 'Pretendard Variable', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" font-size="13" font-weight="500" letter-spacing="0.2" fill="#ffffff">K League Transfer Radar</text>
+</svg>
