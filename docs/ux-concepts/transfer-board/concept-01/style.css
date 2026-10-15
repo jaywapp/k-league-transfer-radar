@@ -1,0 +1,62 @@
+/* 01 출발·도착 전광판: the board itself is always dark (a committed single look); page chrome follows the theme.
+   Board-local stage colors reuse the dark-theme hues so they read on the black housing in both themes. */
+.fids { --housing: #0b0d11; --flap: #1b1f27; --flap-hi: #242a34; --flap-ink: #eef1f5; --dim: #8a93a3; --split: #05070a;
+  --b-interest: #b3c0d6; --b-contact: #8cb8ff; --b-negotiation: #f2c46b; --b-near: #c9adff; --b-confirmed: #4cc77f; --b-failed: #ff9c92; --b-unknown: #b4bac6; --b-amber: #f2c46b;
+  min-height: 100%; padding: 8px 16px 56px; display: grid; align-content: start; gap: 10px; }
+.fids__club { margin: 0 auto; width: 100%; max-width: 1240px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.fids__club span { font-size: 13px; font-weight: 600; color: var(--muted); }
+.fids__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 1240px; width: 100%; margin: 0 auto; }
+.fids--narrow .fids__grid { grid-template-columns: minmax(0, 1fr); }
+.fids__panel { background: var(--housing); border-radius: 14px; padding: 12px 12px 16px; box-shadow: inset 0 0 0 1px #ffffff12, 0 10px 30px #0b18332e; color: var(--flap-ink); min-width: 0; }
+.fids__head { display: flex; align-items: center; gap: 10px; padding: 2px 4px 10px; }
+.fids__head i { font-size: 24px; color: var(--b-amber); }
+.fids__title { font-size: 22px; font-weight: 800; }
+.fids__en { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--dim); }
+.fr-cols, .fr-row { display: grid; grid-template-columns: 98px minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr) 92px; gap: 10px; align-items: center; }
+.fr-cols { padding: 0 6px 6px; font-size: 11px; font-weight: 700; color: var(--dim); border-bottom: 1px solid #ffffff14; }
+.fr-list { display: grid; }
+.fr-row { width: 100%; padding: 8px 6px; border: 0; border-bottom: 1px solid #ffffff0d; background: none; color: inherit; text-align: left; cursor: pointer; border-radius: 6px; }
+.fr-row:hover { background: #ffffff08; }
+.fr-row:focus-visible { outline: 2px solid var(--b-contact); outline-offset: -2px; }
+.fr-row.is-sel { outline: 2px solid var(--b-amber); outline-offset: -2px; }
+.fr-row.is-refuted .c-name, .fr-row.is-refuted .c-club { opacity: .45; text-decoration: line-through; }
+.c-time, .c-name, .c-club, .c-stage { display: flex; flex-wrap: nowrap; gap: 2px; min-width: 0; overflow: hidden; align-items: center; }
+/* a split-flap cell */
+.fl { position: relative; display: inline-grid; place-items: center; min-width: 1.32em; height: 1.75em; padding: 0 .12em; font-size: 15px; font-weight: 800; line-height: 1; color: var(--flap-ink); background: linear-gradient(var(--flap-hi) 0 50%, var(--flap) 50% 100%); border-radius: 3px; box-shadow: inset 0 -1px 0 #00000080; }
+.fl::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--split); }
+.fl--num { min-width: .95em; font-variant-numeric: tabular-nums; color: var(--b-amber); }
+.st--interest .fl--stage { color: var(--b-interest); } .st--contact .fl--stage { color: var(--b-contact); } .st--negotiation .fl--stage { color: var(--b-negotiation); }
+.st--near_agreement .fl--stage { color: var(--b-near); } .st--confirmed .fl--stage { color: #06210f; background: linear-gradient(#5fd690 0 50%, var(--b-confirmed) 50% 100%); } .st--failed .fl--stage { color: var(--b-failed); } .st--unknown .fl--stage { color: var(--b-unknown); }
+.seal { margin-left: 4px; font-size: 18px; color: var(--b-confirmed); }
+.tag { margin-left: 4px; font-size: 10px; font-style: normal; font-weight: 700; color: var(--dim); border: 1px solid #ffffff30; border-radius: 3px; padding: 0 3px; white-space: nowrap; }
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-still]) .fl { animation: flap .5s cubic-bezier(.3, .7, .4, 1) both; animation-delay: calc(var(--i) * 28ms); transform-origin: 50% 50%; }
+}
+@keyframes flap { 0% { transform: rotateX(90deg); filter: brightness(1.6); } 60% { transform: rotateX(-12deg); } 100% { transform: none; filter: none; } }
+/* lamps */
+.c-lamps { display: flex; align-items: center; gap: 10px; }
+.lamps { display: inline-flex; gap: 4px; }
+.lamps i { width: 8px; height: 8px; border-radius: 50%; background: #ffffff1c; }
+.lamps i.on { background: #f4f6fa; box-shadow: 0 0 6px #f4f6fa88; }
+.rv { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--dim); }
+.rv i { width: 9px; height: 9px; border-radius: 50%; background: #ffffff1c; }
+.rv b { font-weight: 800; }
+.rv--reviewed i { background: #c9d2df; }
+.rv--pending i { background: var(--b-amber); box-shadow: 0 0 8px var(--b-amber); } .rv--pending b { color: var(--b-amber); }
+.rv--refuted i { background: var(--b-failed); } .rv--refuted b { color: var(--b-failed); }
+@media (prefers-reduced-motion: no-preference) { :root:not([data-still]) .rv--pending i { animation: lamp 1.2s steps(2, jump-none) infinite; } }
+@keyframes lamp { 50% { opacity: .2; box-shadow: none; } }
+.fr-empty { margin: 18px 6px; display: flex; gap: 2px; }
+/* narrow: two-line rows */
+.fids--narrow .fr-cols { display: none; }
+.fids--narrow .fr-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name stage" "club lamps"; row-gap: 6px; }
+.fids--narrow .c-time { display: none; }
+.fids--narrow .c-name { grid-area: name; } .fids--narrow .c-stage { grid-area: stage; justify-content: flex-end; }
+.fids--narrow .c-club { grid-area: club; } .fids--narrow .c-club .fl { font-size: 12px; height: 1.6em; }
+.fids--narrow .c-lamps { grid-area: lamps; justify-content: flex-end; }
+.fids--narrow .fl { font-size: 14px; }
+/* legend (rendered in the themed popover, so give flaps their own housing) */
+.lg__flaps { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; }
+.lg__flaps li { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.lg-flap, .lg__flaps .lamps, .lg__flaps .rv { --flap: #1b1f27; --flap-hi: #242a34; --flap-ink: #eef1f5; --split: #05070a; --b-interest: #b3c0d6; --b-contact: #8cb8ff; --b-negotiation: #f2c46b; --b-near: #c9adff; --b-confirmed: #4cc77f; --b-failed: #ff9c92; --b-unknown: #b4bac6; --b-amber: #f2c46b; --dim: #8a93a3; display: inline-flex; gap: 2px; padding: 4px; background: #0b0d11; border-radius: 6px; }
+.lg__flaps .fl { font-size: 12px; animation: none !important; }

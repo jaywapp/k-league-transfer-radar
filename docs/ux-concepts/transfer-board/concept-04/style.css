@@ -1,0 +1,22 @@
+/* 04 계기판형 */
+.gg-sec { display: grid; gap: 10px; }
+.gg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.gauge { display: grid; justify-items: center; gap: 0; padding: 12px 8px 10px; border: 0; border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); color: var(--ink); cursor: pointer; }
+.gauge:hover { box-shadow: 0 0 0 1px var(--ink-2); }
+.gauge:focus-visible { outline: 2.5px solid var(--focus); outline-offset: 2px; }
+.gauge--refuted { opacity: .5; }
+.gauge__nm { font-weight: 800; font-size: 14.5px; margin-top: -4px; }
+.gauge__meta { display: inline-flex; gap: 3px; align-items: center; font-size: 12px; color: var(--muted); }
+.dial__band { fill: none; stroke-width: 7; stroke-linecap: butt; opacity: .22; }
+.dial__band--interest { stroke: var(--st-interest); } .dial__band--contact { stroke: var(--st-contact); } .dial__band--negotiation { stroke: var(--st-negotiation); }
+.dial__band--near_agreement { stroke: var(--st-near); } .dial__band--confirmed { stroke: var(--st-confirmed-bg); opacity: .35; }
+.dial__band.on { opacity: 1; }
+.dial__tick { stroke: var(--muted); stroke-width: 1.2; }
+.dial__needle { stroke: var(--ink); stroke-linecap: round; }
+.dial--failed .dial__needle { stroke: var(--st-failed); }
+.dial--confirmed .dial__needle { stroke: var(--st-confirmed-bg); }
+.dial__hub { fill: var(--ink); }
+.dial__hub--pending { fill: var(--rv-pending); }
+.dial__x { fill: var(--st-failed); font-size: 14px; font-weight: 800; }
+.none { color: var(--muted); margin: 0; }
+@media (max-width: 599px) { .gg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>3 레이더 궤도 · K리그 이적 레이더 시안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="../../transfer-radar/shared/base.css">
+<link rel="stylesheet" href="../shared/map.css">
+<style>.side-word { font-size: 16px; font-weight: 700; fill: var(--muted); letter-spacing: .08em; } .ring { fill: none; stroke: var(--line); stroke-width: 1; } .ring--confirmed { stroke: var(--st-confirmed-bg); stroke-opacity: .5; } .ring--failed { stroke-dasharray: 2 5; } .rim { fill: none; stroke: var(--node-ring); stroke-width: 1; } .ring-word { font-size: 10px; font-weight: 600; fill: var(--muted); paint-order: stroke; stroke: var(--canvas); stroke-width: 4px; } .rim-word { font-size: 12.5px; font-weight: 700; fill: var(--ink-2); } @media (prefers-reduced-motion: no-preference) { :root:not([data-still]) .sweep { animation: orbit 9s linear infinite; } }</style>
+<script>window.RT_LABELS = {"../../transfer-map/concept-01/index.html": "1 마인드맵", "../../transfer-map/concept-02/index.html": "2 리그 네트워크", "../../transfer-map/concept-03/index.html": "3 레이더 궤도", "../../transfer-board/concept-01/index.html": "4 출발·도착 전광판", "../../transfer-board/concept-02/index.html": "5 배송 조회", "../../transfer-board/concept-03/index.html": "6 단계 칸반", "../../transfer-board/concept-04/index.html": "7 계기판", "../../transfer-board/concept-05/index.html": "8 버블 군집", "../../transfer-board/concept-06/index.html": "9 모자이크", "../../transfer-board/concept-07/index.html": "10 카드 덱"};</script>
+<script src="../../transfer-radar/shared/review.js"></script>
+</head>
+<body>
+<!--
+THESIS: 이름 그대로의 레이더. 주장된 단계가 나아갈수록 선수가 구단에 다가오고, 공식 확정만 중심 고리에 닿는다.
+OWN-WORLD: 동심원 궤도와 테두리의 상대 구단, 천천히 도는 탐지 부채꼴(정상 갱신 중일 때만). 무채색 캔버스와 단계 색.
+STORY: 구단을 고르면 어떤 영입·방출 소식이 가까이 와 있는지 거리로 읽고, 점을 눌러 카드에서 근거를 본다.
+FIRST VIEWPORT: 화면 가운데 레이더 원, 왼쪽 반원 영입, 오른쪽 반원 방출, 테두리 밖 상대 구단 이름.
+FORM: 극좌표 궤도. 결렬은 가장 바깥 점선 궤도.
+-->
+<script src="../../transfer-radar/shared/data.js"></script>
+<script src="../../transfer-radar/shared/model.js"></script>
+<script src="../../transfer-radar/shared/parts.js"></script>
+<script src="../shared/map.js"></script>
+<script src="../shared/shell.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

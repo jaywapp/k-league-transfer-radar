@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>03 근거 비교표 · K리그 이적 레이더 시안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../shared/review.js"></script>
+</head>
+<body>
+<!--
+THESIS: 루머를 믿을지 판단하는 근거는 출처끼리의 비교다. 목록 한 줄이 펼쳐지면 출처별 주장이 표로 나란히 놓이고, 여러 이적 건도 나란히 비교한다.
+OWN-WORLD: 짙은 슬레이트 조작 막대 아래 밝은 작업면. 열 구분선이 있는 표, 4px 모서리, 13~15px의 촘촘한 글자. 색은 상태 의미에만 쓴다.
+STORY: 막대에서 시장·구단·방향을 정하고, 왼쪽 필터로 좁힌 뒤, 행을 펼쳐 출처별 주장을 확인하거나 두세 건을 골라 비교하고, 원문으로 나간다.
+FIRST VIEWPORT: 위 조작 막대, 왼쪽 필터 칸, 가운데 열 머리가 고정된 표. 펼친 행 안에 출처 표.
+FORM: 필터 칸 + 펼침 표 + 비교 칸. 모바일은 필터 시트 + 카드형 행.
+-->
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="bar">
+  <div class="bar__brand"><span class="bar__name">K리그 이적 레이더</span><span class="bar__note">독립 팬 서비스 · <span class="synthetic-note">가상 선수·가상 소식, 구단명만 실제</span></span></div>
+  <div class="bar__ctrl">
+    <label class="bf"><span>이적시장</span><select id="window"></select></label>
+    <label class="bf"><span>구단</span><select id="club"></select></label>
+    <div class="bf bf--dir" role="group" aria-label="이적 방향" id="dirs"></div>
+    <button type="button" class="bbtn" id="guide-open"><i class="ph ph-info" aria-hidden="true"></i><span>읽는 법</span></button>
+  </div>
+</header>
+<p class="fresh" id="fresh" role="status"></p>
+<div class="layout">
+  <aside class="side" id="side" aria-label="필터"></aside>
+  <main class="main" id="main" tabindex="-1"></main>
+</div>
+<dialog class="sheet" id="guide" aria-labelledby="guide-title">
+  <div class="sheet__head"><span id="guide-title" class="sr-only">이적 레이더 읽는 법</span><button type="button" class="ibtn" data-close aria-label="닫기"><i class="ph ph-x" aria-hidden="true"></i></button></div>
+  <div class="sheet__body guide" id="guide-body"></div>
+</dialog>
+<dialog class="sheet sheet--filters" id="fsheet" aria-labelledby="fsheet-title">
+  <div class="sheet__head"><h2 id="fsheet-title">필터</h2><button type="button" class="ibtn" data-close aria-label="닫기"><i class="ph ph-x" aria-hidden="true"></i></button></div>
+  <div class="sheet__body" id="fsheet-body"></div>
+</dialog>
+<script src="../shared/data.js"></script>
+<script src="../shared/model.js"></script>
+<script src="../shared/parts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

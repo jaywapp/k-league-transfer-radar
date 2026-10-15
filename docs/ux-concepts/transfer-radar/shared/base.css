@@ -1,0 +1,91 @@
+/* Shared reset + semantic tokens. Stage / confidence / review meanings are identical in every concept.
+   Brand surfaces are defined per concept; brand accent never uses the stage hues. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; font-feature-settings: "tnum" 1; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+:root {
+  color-scheme: light;
+  /* stage: claims are outlined, official is solid. Hues are fixed across concepts. */
+  --st-unknown: #5b6270;  --st-unknown-bg: #eef0f3;
+  --st-interest: #4f5f78; --st-interest-bg: #e9eef6;
+  --st-contact: #1d5fbf;  --st-contact-bg: #e6effc;
+  --st-negotiation: #8a5a00; --st-negotiation-bg: #fdf2dc;
+  --st-near: #6a3fb8;     --st-near-bg: #f1ebfb;
+  --st-confirmed: #ffffff; --st-confirmed-bg: #157a3d;
+  --st-failed: #b42318;   --st-failed-bg: #fdecea;
+  --rv-pending: #8a5a00; --rv-refuted: #b42318;
+  --focus: #1d5fbf;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --st-unknown: #b4bac6;  --st-unknown-bg: #262a31;
+  --st-interest: #b3c0d6; --st-interest-bg: #222a36;
+  --st-contact: #8cb8ff;  --st-contact-bg: #15243d;
+  --st-negotiation: #f2c46b; --st-negotiation-bg: #33270f;
+  --st-near: #c9adff;     --st-near-bg: #2a2140;
+  --st-confirmed: #06210f; --st-confirmed-bg: #4cc77f;
+  --st-failed: #ff9c92;   --st-failed-bg: #3a1a17;
+  --rv-pending: #f2c46b; --rv-refuted: #ff9c92;
+  --focus: #8cb8ff;
+}
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+/* ---------- stage chip ---------- */
+.stage { --c: var(--st-unknown); --b: var(--st-unknown-bg); display: inline-flex; align-items: center; gap: .3em; padding: .12em .55em .12em .45em; border-radius: 6px; font-size: .8125rem; font-weight: 600; line-height: 1.35; white-space: nowrap; color: var(--c); background: var(--b); border: 1px dashed color-mix(in srgb, var(--c) 55%, transparent); }
+.stage i { font-size: 1.05em; }
+.stage--lg { font-size: .9375rem; padding: .3em .7em .3em .55em; }
+.stage--interest { --c: var(--st-interest); --b: var(--st-interest-bg); }
+.stage--contact { --c: var(--st-contact); --b: var(--st-contact-bg); }
+.stage--negotiation { --c: var(--st-negotiation); --b: var(--st-negotiation-bg); }
+.stage--near_agreement { --c: var(--st-near); --b: var(--st-near-bg); }
+.stage--failed { --c: var(--st-failed); --b: var(--st-failed-bg); }
+.stage--confirmed { --c: var(--st-confirmed); --b: var(--st-confirmed-bg); border-style: solid; border-color: var(--st-confirmed-bg); }
+
+/* ---------- confidence: three steps + word, never a percentage ---------- */
+.conf { display: inline-flex; align-items: center; gap: .35em; font-size: .8125rem; white-space: nowrap; }
+.conf__bars { display: inline-flex; align-items: flex-end; gap: 2px; height: .8em; }
+.conf__bars i { width: 3px; border-radius: 1px; background: currentColor; opacity: .25; }
+.conf__bars i:nth-child(1) { height: 40%; } .conf__bars i:nth-child(2) { height: 70%; } .conf__bars i:nth-child(3) { height: 100%; }
+.conf--low .conf__bars i:nth-child(-n+1), .conf--medium .conf__bars i:nth-child(-n+2), .conf--high .conf__bars i { opacity: 1; }
+
+/* ---------- review status: neutral text; pending / refuted get a tone, reviewed never looks like official ---------- */
+.review { display: inline-flex; align-items: center; gap: .3em; font-size: .8125rem; white-space: nowrap; }
+.review--pending { color: var(--rv-pending); font-weight: 600; }
+.review--refuted { color: var(--rv-refuted); font-weight: 600; text-decoration: line-through; text-decoration-thickness: 1px; }
+.srcs { display: inline-flex; align-items: center; gap: .3em; font-size: .8125rem; white-space: nowrap; }
+.route { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .3em; }
+.route i { opacity: .6; }
+.flag { display: inline-block; font-size: .75rem; font-weight: 600; padding: 0 .4em; border-radius: 4px; border: 1px solid currentColor; opacity: .85; white-space: nowrap; }
+.rel { opacity: .72; }
+
+/* ---------- skeleton ---------- */
+.skel { display: block; border-radius: 6px; background: linear-gradient(90deg, var(--skel-a, #0000000d) 0%, var(--skel-b, #0000001a) 50%, var(--skel-a, #0000000d) 100%); background-size: 200% 100%; animation: skel 1.4s ease-in-out infinite; }
+@keyframes skel { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+:root[data-still] .skel { animation: none; }
+@media (prefers-reduced-motion: reduce) { .skel { animation: none; } *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; } }
+:root[data-still] *, :root[data-still] *::before, :root[data-still] *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+
+/* ---------- synthetic data notice ---------- */
+.synthetic-note { font-size: .75rem; }
+
+/* ---------- review toolbar (not part of the product) ---------- */
+.rt { position: fixed; z-index: 1000; right: 12px; bottom: 12px; max-width: min(94vw, 760px); font: 12px/1.4 system-ui, sans-serif; color: #e8e8ea; background: #17181bf2; border: 1px solid #ffffff22; border-radius: 10px; box-shadow: 0 10px 30px #0006; }
+.rt summary { list-style: none; padding: 8px 12px; cursor: pointer; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.rt summary::-webkit-details-marker { display: none; }
+.rt__body { padding: 4px 12px 12px; display: grid; gap: 8px; max-height: 60vh; overflow: auto; }
+.rt__row { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.rt__row b { width: 56px; flex: none; color: #a9abb3; font-weight: 500; }
+.rt a, .rt button { all: unset; cursor: pointer; padding: 3px 7px; border-radius: 5px; border: 1px solid #ffffff26; color: #e8e8ea; }
+.rt a[aria-current="true"], .rt button[aria-pressed="true"] { background: #e8e8ea; color: #17181b; }
+.rt a:focus-visible, .rt button:focus-visible { outline: 2px solid #8cb8ff; }
+.rt__log { color: #a9abb3; }
+.rt-frame { display: block; margin: 0 auto; border: 0; height: 100dvh; background: #fff; box-shadow: 0 0 0 1px #8884; }
+body.rt-framed { background: #3a3c42; margin: 0; }

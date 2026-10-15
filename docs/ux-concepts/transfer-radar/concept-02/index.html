@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>02 변화 기록 · K리그 이적 레이더 시안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../shared/review.js"></script>
+</head>
+<body>
+<!--
+THESIS: 팬이 매일 묻는 질문은 "무엇이 바뀌었나"다. 첫 화면은 구단의 변화 기록이고, 현재 목록은 그 옆의 참고 자료다.
+OWN-WORLD: 무채색 종이 위 송고 기록. 고정폭 숫자의 시각 열, 각진 모서리, 굵은 가로 괘선. 색은 상태 의미에만 쓴다.
+STORY: 구단을 고르면 오늘·어제의 단계 변경과 새 주장을 위에서부터 읽고, 한 줄을 눌러 그 이적 건의 전체 타임라인을 따라간다.
+FIRST VIEWPORT: 위 구단 띠, 왼쪽 넓은 변화 기록(날짜 묶음), 오른쪽 좁은 "지금 상태" 목록과 필터.
+FORM: 날짜별 변화 기록 + 타임라인 상세(전체 화면). 모바일은 변화 기록/지금 상태 전환.
+-->
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="top">
+  <div class="top__row">
+    <p class="brand"><span class="brand__name">K리그 이적 레이더</span><span class="brand__note">독립 팬 서비스 · <span class="synthetic-note">가상 선수·가상 소식, 구단명만 실제</span></span></p>
+    <label class="window"><span class="sr-only">이적시장</span><select id="window"></select></label>
+    <button type="button" class="btn btn--ghost" id="guide-open"><i class="ph ph-info" aria-hidden="true"></i><span>읽는 법</span></button>
+  </div>
+  <nav class="clubs" id="clubs" aria-label="구단 선택"></nav>
+</header>
+<p class="fresh" id="fresh" role="status"></p>
+<main id="main" tabindex="-1"></main>
+<dialog class="sheet" id="guide" aria-labelledby="guide-title">
+  <div class="sheet__head"><span id="guide-title" class="sr-only">이적 레이더 읽는 법</span><button type="button" class="btn btn--icon" data-close aria-label="닫기"><i class="ph ph-x" aria-hidden="true"></i></button></div>
+  <div class="sheet__body guide" id="guide-body"></div>
+</dialog>
+<script src="../shared/data.js"></script>
+<script src="../shared/model.js"></script>
+<script src="../shared/parts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

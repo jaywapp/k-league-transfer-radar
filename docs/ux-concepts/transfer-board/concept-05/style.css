@@ -1,0 +1,18 @@
+/* 05 버블 군집형 */
+.board { overflow: hidden; }
+.bb-stage { position: absolute; inset: 0; }
+.bb-club { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; font-size: 64px; font-weight: 800; letter-spacing: -.04em; color: color-mix(in srgb, var(--ink) 6%, transparent); pointer-events: none; z-index: 0; }
+.bb-word { position: absolute; transform: translateX(-50%); font-size: 13px; font-weight: 800; color: var(--muted); letter-spacing: .04em; white-space: nowrap; }
+.bb { --c: var(--st-unknown); position: absolute; z-index: 1; aspect-ratio: 1; display: grid; place-content: center; justify-items: center; gap: 0; padding: 0; border-radius: 50%; border: 2px dashed var(--c); background: color-mix(in srgb, var(--c) 16%, var(--surface)); color: var(--ink); cursor: pointer; transition: transform .15s ease; }
+.bb:hover { transform: scale(1.04); }
+.bb:focus-visible { outline: 2.5px solid var(--focus); outline-offset: 3px; }
+.bb--interest { --c: var(--st-interest); } .bb--contact { --c: var(--st-contact); } .bb--negotiation { --c: var(--st-negotiation); }
+.bb--near_agreement { --c: var(--st-near); } .bb--failed { --c: var(--st-failed); background: var(--surface); opacity: .7; }
+.bb--confirmed { border-style: solid; background: var(--st-confirmed-bg); color: var(--st-confirmed); border-color: var(--st-confirmed-bg); box-shadow: 0 6px 18px color-mix(in srgb, var(--st-confirmed-bg) 35%, transparent); }
+.bb--unknown { border-style: dotted; }
+.bb--refuted { opacity: .4; }
+.bb__nm { font-size: 13.5px; font-weight: 800; line-height: 1.15; white-space: nowrap; }
+.bb__cl { font-size: 11px; opacity: .75; }
+.bb__seal { font-size: 16px; }
+.bb__x { position: absolute; right: 12%; top: 10%; color: var(--st-failed); font-size: 14px; }
+.bb__pending { position: absolute; right: 8%; top: 8%; width: 10px; height: 10px; border-radius: 50%; background: var(--rv-pending); border: 2px solid var(--surface); }
