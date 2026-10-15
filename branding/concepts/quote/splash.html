@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스플래시 - 두 개의 따옴표</title>
+<style>
+@font-face{font-family:"Pretendard";src:url("../../assets/PretendardVariable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#ffffff;overflow:hidden}
+.stage{position:relative;width:360px;height:780px;margin:0 auto;font-family:"Pretendard","Malgun Gothic",sans-serif}
+svg{position:absolute;left:40px;top:205px;width:280px;height:280px}
+.word{position:absolute;left:0;right:0;top:480px;text-align:center;color:#121823;font-size:30px;font-weight:800;letter-spacing:-.03em}
+.sub{position:absolute;left:0;right:0;top:526px;text-align:center;color:#434c5c;font-size:14px;font-weight:500;letter-spacing:.02em}
+</style>
+<div class="stage">
+  <svg viewBox="0 0 1024 1024" aria-hidden="true">
+    <path id="q1" d="M260 435 A110 110 0 0 1 480 435 C480 578 403 666 282 699 L271 655 C348 628 376 584 370 545 A110 110 0 0 1 260 435 Z" fill="#121823" style="transform-origin:370px 500px"/>
+    <path id="q2" d="M540 435 A110 110 0 0 1 760 435 C760 578 683 666 562 699 L551 655 C628 628 656 584 650 545 A110 110 0 0 1 540 435 Z" fill="none" stroke="#121823" stroke-width="34" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+  </svg>
+  <div class="word" id="word">K리그 이적 레이더</div>
+  <div class="sub" id="sub">K League Transfer Radar</div>
+</div>
+<script>
+var clamp=function(v){return Math.min(1,Math.max(0,v));};
+var ease=function(v){v=clamp(v);return 1-Math.pow(1-v,3);};
+var seg=function(t,a,b){return ease((t-a)/(b-a));};
+var $=function(id){return document.getElementById(id);};
+window.setFrame=function(t){
+  var a=seg(t,0,.3);$('q1').style.transform='scale('+(.6+.4*a)+')';$('q1').style.opacity=a;
+  var b=seg(t,.24,.62);$('q2').setAttribute('stroke-dashoffset',1-b);$('q2').style.visibility=b>0?'visible':'hidden';
+  var w=seg(t,.6,.86),u=seg(t,.7,.94);
+  $('word').style.opacity=w;$('word').style.transform='translateY('+(12*(1-w))+'px)';
+  $('sub').style.opacity=u;
+};
+(function(){
+  var q=new URLSearchParams(location.search).get('t');
+  if(q!==null){window.setFrame(parseFloat(q));return;}
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){window.setFrame(1);return;}
+  var start=null;function loop(ts){if(start===null)start=ts;var t=((ts-start)/1000)/2.4;window.setFrame(Math.min(t,1));if(t<1.5)requestAnimationFrame(loop);else{start=null;requestAnimationFrame(loop);}}
+  requestAnimationFrame(loop);
+})();
+</script>
+</html>

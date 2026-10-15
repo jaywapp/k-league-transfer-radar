@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스플래시 - 이적 경로</title>
+<style>
+@font-face{font-family:"Pretendard";src:url("../../assets/PretendardVariable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#f4f5f7;overflow:hidden}
+.stage{position:relative;width:360px;height:780px;margin:0 auto;font-family:"Pretendard","Malgun Gothic",sans-serif}
+svg{position:absolute;left:40px;top:205px;width:280px;height:280px}
+.word{position:absolute;left:0;right:0;top:480px;text-align:center;color:#121823;font-size:30px;font-weight:800;letter-spacing:-.03em}
+.sub{position:absolute;left:0;right:0;top:526px;text-align:center;color:#434c5c;font-size:14px;font-weight:500;letter-spacing:.02em}
+</style>
+<div class="stage">
+  <svg viewBox="0 0 1024 1024" aria-hidden="true">
+    <defs><mask id="reveal"><path id="rv" d="M300 540 Q512 220 724 540" fill="none" stroke="#fff" stroke-width="80" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></mask></defs>
+    <circle id="from" cx="300" cy="640" r="84" fill="#121823"/>
+    <path d="M300 540 Q512 220 724 540" fill="none" stroke="#121823" stroke-width="32" stroke-dasharray="44 40" stroke-linecap="round" mask="url(#reveal)"/>
+    <circle id="to" cx="724" cy="640" r="66" fill="none" stroke="#121823" stroke-width="36"/>
+    <circle id="halo" cx="512" cy="380" r="86" fill="#121823" fill-opacity=".12"/>
+    <circle id="now" cx="300" cy="540" r="50" fill="#ffffff" stroke="#121823" stroke-width="30"/>
+  </svg>
+  <div class="word" id="word">K리그 이적 레이더</div>
+  <div class="sub" id="sub">K League Transfer Radar</div>
+</div>
+<script>
+var clamp=function(v){return Math.min(1,Math.max(0,v));};
+var ease=function(v){v=clamp(v);return 1-Math.pow(1-v,3);};
+var seg=function(t,a,b){return ease((t-a)/(b-a));};
+var $=function(id){return document.getElementById(id);};
+// point on the quadratic arc at parameter p (0.5 is the apex)
+var at=function(p){var a=1-p;return [a*a*300+2*a*p*512+p*p*724, a*a*540+2*a*p*220+p*p*540];};
+window.setFrame=function(t){
+  $('from').setAttribute('r',84*seg(t,0,.16));
+  var r=seg(t,.12,.5);$('rv').setAttribute('stroke-dashoffset',1-r);
+  var pt=at(.5*r);$('now').setAttribute('cx',pt[0]);$('now').setAttribute('cy',pt[1]);$('now').style.opacity=seg(t,.1,.18);
+  var to=seg(t,.42,.6);$('to').setAttribute('r',66*to);$('to').style.opacity=to>0?1:0;
+  var h=seg(t,.5,.68);$('halo').setAttribute('r',50+36*h);$('halo').style.opacity=h;
+  var w=seg(t,.6,.86),u=seg(t,.7,.94);
+  $('word').style.opacity=w;$('word').style.transform='translateY('+(12*(1-w))+'px)';
+  $('sub').style.opacity=u;
+};
+(function(){
+  var q=new URLSearchParams(location.search).get('t');
+  if(q!==null){window.setFrame(parseFloat(q));return;}
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){window.setFrame(1);return;}
+  var start=null;function loop(ts){if(start===null)start=ts;var t=((ts-start)/1000)/2.4;window.setFrame(Math.min(t,1));if(t<1.5)requestAnimationFrame(loop);else{start=null;requestAnimationFrame(loop);}}
+  requestAnimationFrame(loop);
+})();
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스플래시 - 현재 위치</title>
+<style>
+@font-face{font-family:"Pretendard";src:url("../../assets/PretendardVariable.woff2") format("woff2");font-weight:100 900;font-display:block}
+html,body{margin:0;height:100%;background:#121823;overflow:hidden}
+.stage{position:relative;width:360px;height:780px;margin:0 auto;font-family:"Pretendard","Malgun Gothic",sans-serif}
+svg{position:absolute;left:40px;top:205px;width:280px;height:280px}
+.word{position:absolute;left:0;right:0;top:480px;text-align:center;color:#ffffff;font-size:30px;font-weight:800;letter-spacing:-.03em}
+.sub{position:absolute;left:0;right:0;top:526px;text-align:center;color:#8f99a9;font-size:14px;font-weight:500;letter-spacing:.02em}
+</style>
+<div class="stage">
+  <svg viewBox="0 0 1024 1024" aria-hidden="true">
+    <line id="solid" x1="214" y1="512" x2="470" y2="512" stroke="#ffffff" stroke-width="56" stroke-linecap="round"/>
+    <circle id="start" cx="214" cy="512" r="46" fill="#ffffff"/>
+    <line id="dash" x1="612" y1="512" x2="736" y2="512" stroke="#8f99a9" stroke-width="40" stroke-dasharray="38 44" stroke-linecap="round"/>
+    <circle id="end" cx="806" cy="512" r="38" fill="none" stroke="#8f99a9" stroke-width="24"/>
+    <circle id="halo" cx="512" cy="512" r="128" fill="#ffffff" fill-opacity=".16"/>
+    <circle id="now" cx="512" cy="512" r="80" fill="#ffffff"/>
+  </svg>
+  <div class="word" id="word">K리그 이적 레이더</div>
+  <div class="sub" id="sub">K League Transfer Radar</div>
+</div>
+<script>
+var clamp=function(v){return Math.min(1,Math.max(0,v));};
+var ease=function(v){v=clamp(v);return 1-Math.pow(1-v,3);};
+var seg=function(t,a,b){return ease((t-a)/(b-a));};
+var $=function(id){return document.getElementById(id);};
+window.setFrame=function(t){
+  var s0=seg(t,0,.12);$('start').setAttribute('r',46*s0);
+  var l=seg(t,.08,.42);$('solid').setAttribute('x2',214+256*l);$('solid').style.opacity=l>0?1:0;
+  var n=seg(t,.36,.54);$('now').setAttribute('r',80*n);
+  var h=seg(t,.46,.66);$('halo').setAttribute('r',80+48*h);$('halo').style.opacity=h;
+  var d=seg(t,.5,.66);$('dash').style.opacity=d;$('end').style.opacity=seg(t,.58,.72);
+  var w=seg(t,.6,.86),u=seg(t,.7,.94);
+  $('word').style.opacity=w;$('word').style.transform='translateY('+(12*(1-w))+'px)';
+  $('sub').style.opacity=u;
+};
+(function(){
+  var q=new URLSearchParams(location.search).get('t');
+  if(q!==null){window.setFrame(parseFloat(q));return;}
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){window.setFrame(1);return;}
+  var start=null;function loop(ts){if(start===null)start=ts;var t=((ts-start)/1000)/2.4;window.setFrame(Math.min(t,1));if(t<1.5)requestAnimationFrame(loop);else{start=null;requestAnimationFrame(loop);}}
+  requestAnimationFrame(loop);
+})();
+</script>
+</html>
