@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>관리자 예외 검토 공통안 · K리그 이적 레이더 시안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../shared/review.js"></script>
+</head>
+<body>
+<!--
+THESIS: 관리자는 "지금 공개된 상태"와 "새 주장"을 나란히 놓고 한 건씩 결정한다. 결정 전에 공개 화면이 어떻게 바뀌는지 미리 보여 준다.
+OWN-WORLD: 공개 시안과 같은 의미 토큰, 무채색 작업면, 4px 모서리. 장식 없음.
+STORY: 대기열에서 건을 고르고, 두 열을 비교하고, 승인·수정·반려 중 하나를 사유와 함께 남긴 뒤, 처리 이력에서 확인한다.
+FIRST VIEWPORT: 왼쪽 대기열(사유별), 가운데 비교 두 열, 아래 결정 영역.
+FORM: 대기열 + 비교 + 결정 + 이력. 세 공개 시안 공통.
+-->
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="top">
+  <div><p class="top__name">K리그 이적 레이더 · 예외 검토</p><p class="top__note">관리자 화면 공통안 · 인증과 쓰기 API는 별도 서버에서 정합니다 · 버튼은 동작만 흉내 냅니다 · <span class="synthetic-note">가상 선수·가상 소식, 구단명만 실제</span></p></div>
+  <nav class="tabs" aria-label="검토 화면"><a href="#queue" id="tab-queue" aria-current="page">검토 대기</a><a href="#log" id="tab-log">처리 이력</a></nav>
+</header>
+<div class="layout">
+  <nav class="queue" id="queue" aria-label="검토 대기열"></nav>
+  <main id="main" tabindex="-1"></main>
+</div>
+<script src="../shared/data.js"></script>
+<script src="../shared/model.js"></script>
+<script src="../shared/parts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

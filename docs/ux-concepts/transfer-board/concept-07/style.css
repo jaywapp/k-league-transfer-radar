@@ -1,0 +1,27 @@
+/* 07 카드 덱형 */
+.dk { min-height: 100%; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; gap: 12px; padding: 8px 16px 56px; }
+.dk-top { margin: 0; width: min(420px, 100%); display: flex; justify-content: space-between; font-weight: 800; }
+.dk-count { color: var(--muted); font-variant-numeric: tabular-nums; }
+.dk-empty { align-self: center; color: var(--muted); font-weight: 700; }
+.dk-stack { position: relative; width: min(420px, 100%); align-self: center; }
+.dk-peek { position: absolute; inset: 0; border-radius: 26px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.dk-peek--1 { transform: translateY(12px) scale(.96); opacity: .8; }
+.dk-peek--2 { transform: translateY(24px) scale(.92); opacity: .5; }
+.dk-card { --c: var(--st-unknown); position: relative; width: 100%; display: grid; justify-items: center; gap: 8px; padding: 28px 20px 30px; border: 2px dashed color-mix(in srgb, var(--c) 70%, transparent); border-radius: 26px; background: var(--surface); color: var(--ink); cursor: pointer; box-shadow: 0 16px 40px #0b18331f; touch-action: pan-y; }
+.dk-card:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.dk-card--interest { --c: var(--st-interest); } .dk-card--contact { --c: var(--st-contact); } .dk-card--negotiation { --c: var(--st-negotiation); }
+.dk-card--near_agreement { --c: var(--st-near); } .dk-card--failed { --c: var(--st-failed); }
+.dk-card--confirmed { --c: var(--st-confirmed-bg); border-style: solid; border-width: 3px; }
+.dk-dir { position: absolute; left: 18px; top: 16px; display: inline-flex; gap: 4px; align-items: center; font-size: 12px; font-weight: 800; color: var(--muted); }
+.dk-card .ring__glyph { font-size: 52px; }
+.dk-name { font-size: 26px; font-weight: 800; letter-spacing: -.02em; text-align: center; line-height: 1.25; }
+.dk-route { display: inline-flex; gap: 6px; align-items: center; color: var(--ink-2); font-weight: 700; }
+.dk-stage { font-size: 13px; font-weight: 800; color: var(--c); }
+.dk-card--confirmed .dk-stage { color: var(--st-confirmed-bg); }
+.dk-nav { display: flex; align-items: center; gap: 16px; }
+.dk-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 20px; display: grid; place-items: center; }
+.dk-btn:disabled { opacity: .35; }
+.dk-dots { display: flex; gap: 6px; }
+.dk-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.dk-dots i.on { width: 22px; border-radius: 4px; background: var(--ink); }
+.dk-dot--confirmed { background: var(--st-confirmed-bg) !important; }

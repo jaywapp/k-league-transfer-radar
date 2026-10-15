@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>01 구단 장부 · K리그 이적 레이더 시안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="style.css">
+<script src="../shared/review.js"></script>
+</head>
+<body>
+<!--
+THESIS: 구단을 고르면 그 구단의 장부가 열린다. 구단 목록·이적 목록·근거가 한 화면에 나란히 놓여, 목록을 떠나지 않고 근거를 비교한다.
+OWN-WORLD: 차가운 흰 종이와 남색 잉크, 1px 괘선, 굵은 숫자. 브랜드 색 없이 잉크만 강조로 쓰고, 색은 상태 의미에만 남긴다.
+STORY: 시장·구단을 고르고 영입/방출을 바꾸며 훑어보다가, 한 줄을 눌러 오른쪽 장부에서 주장·출처·이력을 읽고 원문으로 나간다.
+FIRST VIEWPORT: 왼쪽 구단 색인(K리그1·2), 가운데 선택 구단 제목과 영입/방출 전환, 필터, 최근 갱신순 표. 상세는 오른쪽 칸.
+FORM: 3단 장부(색인·표·상세 칸). 모바일은 구단 시트 + 목록 + 전체 화면 상세.
+-->
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="top">
+  <div class="brand"><span class="brand__name">K리그 이적 레이더</span><span class="brand__note">독립 팬 서비스 · <span class="synthetic-note">가상 선수·가상 소식, 구단명만 실제</span></span></div>
+  <div class="top__ctrl">
+    <label class="field field--window"><span class="field__label">이적시장</span><select id="window"></select></label>
+    <button type="button" class="btn btn--ghost" id="guide-open"><i class="ph ph-info" aria-hidden="true"></i><span>읽는 법</span></button>
+  </div>
+  <p class="fresh" id="fresh" role="status"></p>
+</header>
+<div class="shell" id="shell">
+  <nav class="rail" id="rail" aria-label="구단 선택"></nav>
+  <main class="main" id="main" tabindex="-1"></main>
+  <aside class="detail" id="detail" aria-label="이적 건 상세" hidden></aside>
+</div>
+<dialog class="sheet" id="club-sheet" aria-labelledby="club-sheet-title">
+  <div class="sheet__head"><h2 id="club-sheet-title">구단 선택</h2><button type="button" class="btn btn--icon" data-close aria-label="닫기"><i class="ph ph-x" aria-hidden="true"></i></button></div>
+  <div class="sheet__body" id="club-sheet-body"></div>
+</dialog>
+<dialog class="sheet sheet--guide" id="guide" aria-labelledby="guide-title">
+  <div class="sheet__head"><span id="guide-title" class="sr-only">이적 레이더 읽는 법</span><button type="button" class="btn btn--icon" data-close aria-label="닫기"><i class="ph ph-x" aria-hidden="true"></i></button></div>
+  <div class="sheet__body guide" id="guide-body"></div>
+</dialog>
+<script src="../shared/data.js"></script>
+<script src="../shared/model.js"></script>
+<script src="../shared/parts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+/* Shared token ring styles for the non-graph concepts. */
+.ring__track { fill: none; stroke: var(--line); }
+.ring__arc { fill: none; stroke-linecap: round; transition: stroke-dasharray .4s ease; }
+.ring__face { fill: var(--surface); stroke: none; }
+.ring__face--done { fill: var(--st-confirmed-bg); }
+.ring__face--failed { fill: var(--canvas); }
+.ring__face--unknown { fill: var(--canvas); stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 2 2; }
+.ring__glyph { font-size: 15px; font-weight: 800; fill: var(--ink); }
+.ring--failed .ring__glyph { fill: var(--muted); }
+.ring__check { fill: none; stroke: var(--st-confirmed); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.ring__x { stroke: var(--st-failed); stroke-width: 2; stroke-linecap: round; }
+.ring__pending { fill: var(--rv-pending); stroke: var(--surface); stroke-width: 2; }
+@media (prefers-reduced-motion: no-preference) { :root:not([data-still]) .ring__pending { animation: blink 1.6s ease-in-out infinite; } }
+@keyframes blink { 50% { opacity: .25; } }
+.ring__refuted { stroke: var(--st-failed); stroke-width: 2; stroke-linecap: round; }
+.lg__tokens { list-style: none; margin: 0 0 10px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 6px 10px; }
+.lg__tokens li { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+[data-case].is-sel { outline: 2.5px solid var(--focus); outline-offset: 3px; }
+
+/* avatar disc shared by step concepts: rumor = dashed ring in stage color, confirmed = solid green */
+.av { --c: var(--st-unknown); position: relative; flex: none; display: inline-grid; place-items: center; width: var(--s); height: var(--s); border-radius: 50%; border: 2px dashed var(--c); background: var(--surface); color: var(--ink); font-weight: 800; font-size: calc(var(--s) * .42); }
+.av--interest { --c: var(--st-interest); } .av--contact { --c: var(--st-contact); } .av--negotiation { --c: var(--st-negotiation); }
+.av--near_agreement { --c: var(--st-near); } .av--failed { --c: var(--st-failed); color: var(--muted); }
+.av--confirmed { --c: var(--st-confirmed-bg); border-style: solid; background: var(--st-confirmed-bg); color: var(--st-confirmed); }
+.av--unknown { border-style: dotted; color: var(--muted); }
+.av__pending { position: absolute; right: -2px; top: -2px; width: 9px; height: 9px; border-radius: 50%; background: var(--rv-pending); border: 2px solid var(--surface); }
+.cdots { display: inline-flex; gap: 3px; vertical-align: middle; }
+.cdots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+.cdots i.on { background: var(--ink-2); }
+.board-wrap { min-height: 100%; padding: 8px 16px 60px; max-width: 1240px; margin: 0 auto; display: grid; align-content: start; gap: 14px; }
+.board-title { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.board-title span { font-size: 13px; font-weight: 600; color: var(--muted); }
+.sec-h { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: var(--ink-2); }
+.sec-h .n { color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
